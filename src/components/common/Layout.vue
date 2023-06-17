@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <Header></Header>
-    <el-empty description="当前页面不存在" />
-  </div>
+    <div>
+        <Header></Header>
+        <div class="page-content">
+            <router-view></router-view>
+        </div>
+    </div>
 </template>
 
 <script setup>

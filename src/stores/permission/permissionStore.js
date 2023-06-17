@@ -12,19 +12,13 @@ export const usePermissionStore = defineStore('permission',() =>{
     }
   }
   const useModuleAction = (data) => {
-    module.value = {
-      ...data
-    }
+    module.value = [...data]
   }
   const useMenuAction = (data) => {
-    menu.value = {
-      ...data
-    }
+    menu.value = [...data]
   }
   const usePageAction = (data) => {
-    page.value = {
-      ...data
-    }
+    page.value = [...data]
   }
   const useActiveMenuAction = (data) => {
     activeMenu.value = {

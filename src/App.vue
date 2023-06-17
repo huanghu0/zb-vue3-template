@@ -9,9 +9,9 @@ const fetchPermission = async () => {
   const { data:{menu,module,page,project,userInfo} } = res
   const loginStore = useLoginStore()
   const permStore = usePermissionStore()
-  const { useInfoAction } = loginStore
+  const { userInfoAction } = loginStore
   const { useProjectAction,useModuleAction,useMenuAction,usePageAction } = permStore
-  useInfoAction(userInfo)
+  userInfoAction(userInfo)
   useProjectAction(project)
   useModuleAction(module)
   useMenuAction(menu)

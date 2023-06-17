@@ -7,6 +7,9 @@ const router = createRouter({
       path:'/404',
       name:'404',
       component: () => import('@/views/404.vue') 
+    },{
+      path: "/:catchAll(.*)", // 不识别的path自动匹配404
+      redirect:'/404'
     } 
   ]
 })
