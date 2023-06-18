@@ -29,14 +29,28 @@
 </template>
 
 <script setup>
+import { watch } from 'vue'
 import { usePermissionStore } from '@/stores/permission/permissionStore'
 import { useLoginStore } from '@/stores/login/loginStore'
 import { storeToRefs } from 'pinia'
+import { useRoute,useRouter } from "vue-router"
 const permissionStore = usePermissionStore()
 const userStore = useLoginStore()
 const { module,activeMenu,menu } = storeToRefs(permissionStore)
 const { userInfo } = storeToRefs(userStore)
 const { useActiveMenuAction } = permissionStore
+const router = useRouter()
+const route = useRoute()
+
+watch(route,(newValue,oldValue)=>{
+  if (['/401', '/404', '/error'].includes(newValue.path)) {
+    useActiveMenuAction({})
+  }
+},{
+  deep:true,
+  immediate:true
+})
+
 
 const handleSelect = (m) => {
   // 找到模块下面第一个菜单
@@ -49,10 +63,10 @@ const handleSelect = (m) => {
   // 跳到菜单第一个页面
   if (temp.length > 0) {
     useActiveMenuAction(temp[0].children[0])
-    // this.$router.push(temp[0].children[0].menuUrl)
+    router.push(temp[0].children[0].menuUrl)
   } else {
     useActiveMenuAction({ ...m, moduleId: m.oid })
-    // this.$router.push(menu.moduleUrl)
+    router.push(m.moduleUrl)
   }
 }
 

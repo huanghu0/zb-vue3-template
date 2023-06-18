@@ -6,24 +6,18 @@ export const usePermissionStore = defineStore('permission',() =>{
   const menu = ref([]);
   const page = ref([]);
   const activeMenu = ref({});
-  const useProjectAction = (data) => {
+  const usePermissionAction = (data) => {
     project.value = {
-      ...data
-    }
-  }
-  const useModuleAction = (data) => {
-    module.value = [...data]
-  }
-  const useMenuAction = (data) => {
-    menu.value = [...data]
-  }
-  const usePageAction = (data) => {
-    page.value = [...data]
+      ...data.project
+    }    
+    module.value = [...data.module]
+    menu.value = [...data.menu]
+    page.value = [...data.page]
   }
   const useActiveMenuAction = (data) => {
     activeMenu.value = {
       ...data
     }
   }
-  return { project,module,menu,page,activeMenu,useProjectAction,useModuleAction,useMenuAction,usePageAction,useActiveMenuAction }
+  return { project,module,menu,page,activeMenu,usePermissionAction,useActiveMenuAction }
 })
